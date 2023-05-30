@@ -13,12 +13,16 @@ while(True):
 
     # scan the frame for qrcode
     data, bbox, rectified = qrcode.detectAndDecode(frame)
-    if bbox is not None:
-       print(data)
-       break
+    if data != "":
+        print(data)
+        break
+    
+    # press 'q' to exit
+    # if cv2.waitKey(1) & 0xFF == ord('q'):
+    #     break
 
-# release camera
+# 釋放攝影機
 cap.release()
 
-# close all the cv2 windows
+# 關閉所有 OpenCV 視窗
 cv2.destroyAllWindows()
