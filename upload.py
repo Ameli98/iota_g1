@@ -13,10 +13,10 @@ data = {
     'from': 'NTU_liabrary',
     'date': '1/1/2023',
     'due': '3/1/2023',
-    }
+}
 # data = "some utf based data".encode("utf8")
 
 message = client.message(
-    index="some_data_indey", data=str(data).encode("utf8")
+    index="some_data_index", data=str(data).encode("utf8")
 )
 pprint(message)
