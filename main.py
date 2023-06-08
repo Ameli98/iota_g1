@@ -13,7 +13,7 @@ def main(username):
 if __name__ == "__main__":
     # option build
     parser = argparse.ArgumentParser()
-    parser.add_argument("user_name", type=str,help="your username")
+    parser.add_argument("user_name", type=str, help="your username")
     parser.add_argument("-bn", "--book_number", nargs="?", type=int, default=1, help="number of books you want to borrow or return")
     args = parser.parse_args()
 
