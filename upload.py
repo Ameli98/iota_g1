@@ -1,6 +1,12 @@
 import iota_client, json, subprocess, os
 from dotenv import load_dotenv
 
+def synchronize():
+    load_dotenv()
+    destination = os.getenv("DESTINATION")
+    subprocess.run(["scp", destination, "message_id.json"])
+    return destination
+
 def upload():
     client = iota_client.Client()
 
@@ -24,9 +30,7 @@ def upload():
     id = message["message_id"]
 
     # Synchronize message_id.json from the database
-    load_dotenv()
-    destination = os.getenv("DESTINATION")
-    subprocess.run(["scp", destination, "message_id.json"])
+    destination = synchronize()
 
     # Record message_id in message_id.json
     with open("message_id.json", "r") as m:

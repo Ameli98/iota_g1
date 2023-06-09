@@ -3,6 +3,7 @@ import json
 import datetime
 import os
 from dotenv import load_dotenv
+from search import search, synchronize
 
 def scan(user:str):
     # Open camera and qrcode detector
@@ -33,6 +34,19 @@ def scan(user:str):
                 place = os.getenv("PLACE")
                 data["place"] = place
 
+                try:
+                    last_data = search(data["name"])
+                except FileNotFoundError:
+                    synchronize()
+                try:
+                    if last_data["status"] == "borrow":
+                        data["status"] = "return"
+                    else:
+                        data["status"] = "borrow"
+                except KeyError:
+                    print("error")
+                    data["status"] = "borrow"
+                
                 json.dump(data, output_file)
                 print("Success! Process recorded.")
                 break
