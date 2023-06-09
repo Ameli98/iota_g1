@@ -1,4 +1,5 @@
 import iota_client, json, subprocess, os
+from datetime import datetime
 from dotenv import load_dotenv
 
 def synchronize():
@@ -13,16 +14,15 @@ def upload():
     with open("data.json", "r") as f:
         data = json.load(f)
         name = data["name"]
-    # encoding utf string into list of bytes
-    # data = {
-    #     "name": "Bible",
-    #     "status": "borrow",        # borrow / return
-    #     "user": "Amelia Huang",
-    #     "from": "NTU_liabrary",
-    #     "date": "1/1/2023",
-    #     "due": "3/1/2023"
-    #     }
-    # data = "some utf based data".encode("utf8")
+        status = data["status"]
+        due = datetime.strptime(data["due"], "%Y-%m-%d")
+        if status == "return":
+            if due < datetime.today():
+                print(f"Overdued!! you should have return {name} before {str(due)}.")
+            else:
+                print("Operation success.")
+        else:
+            print(f"Operation success. Please return {name} before {str(due)}")
 
     message = client.message(
         index="some_data_index", data=str(data).encode("utf8")

@@ -28,8 +28,7 @@ def scan(user:str):
                 data = json.loads(data)
 
                 data["user"] = user
-                data["date"] = str(datetime.date.today())
-                data["due"] = str(datetime.date.today() + datetime.timedelta(days=60))
+
                 load_dotenv()
                 place = os.getenv("PLACE")
                 data["place"] = place
@@ -47,6 +46,13 @@ def scan(user:str):
                     print("error")
                     data["status"] = "borrow"
                 
+                if data["status"] == "borrow":
+                    data["date"] = str(datetime.date.today())
+                    data["due"] = str(datetime.date.today() + datetime.timedelta(days=60))
+                else:
+                    data["date"] = str(datetime.date.today())
+                    data["due"] = last_data["due"]
+
                 json.dump(data, output_file)
                 print("Success! Process recorded.")
                 break
