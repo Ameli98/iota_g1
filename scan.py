@@ -33,16 +33,13 @@ def scan(user:str):
                 place = os.getenv("PLACE")
                 data["place"] = place
 
-                try:
-                    last_data = search(data["name"])
-                except FileNotFoundError:
-                    synchronize()
+                last_data = search(data["name"])
                 try:
                     if last_data["status"] == "borrow":
                         data["status"] = "return"
                     else:
                         data["status"] = "borrow"
-                except KeyError:
+                except TypeError:
                     print("error")
                     data["status"] = "borrow"
                 

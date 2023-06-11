@@ -1,7 +1,7 @@
 import json
 import argparse
 from dotenv import load_dotenv
-import subprocess, os
+import subprocess, os, sys
 import iota_client
 from upload import synchronize
 
@@ -21,7 +21,7 @@ def search(name:str):
         id = id_set[name]
     except KeyError:
         print("No such book exists")
-        os._exit(1)
+        return None
 
     # Get message from iota
     client = iota_client.Client()
