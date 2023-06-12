@@ -1,12 +1,17 @@
-import iota_client, json, subprocess, os
+import iota_client
+import json
+import subprocess
+import os
 from datetime import datetime
 from dotenv import load_dotenv
+
 
 def synchronize():
     load_dotenv()
     destination = os.getenv("DESTINATION")
     subprocess.run(["scp", destination, "message_id.json"])
     return destination
+
 
 def upload():
     client = iota_client.Client()
@@ -20,7 +25,7 @@ def upload():
             if due < datetime.today():
                 print(f"Overdued!! you should have return {name} before {str(due)}.")
             else:
-                print("Operation success.")
+                print("Return successfully.")
         else:
             print(f"Operation success. Please return {name} before {str(due)}")
 
@@ -45,5 +50,7 @@ def upload():
 
     # Update the latest message_id.json to the database
     subprocess.run(["scp", "message_id.json", destination])
+
+
 if __name__ == "__main__":
     upload()

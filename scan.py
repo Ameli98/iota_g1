@@ -3,6 +3,7 @@ import json
 import datetime
 import os
 from dotenv import load_dotenv
+
 from search import search
 
 def scan(user:str):
@@ -42,10 +43,12 @@ def scan(user:str):
                 except TypeError:
                     print("error")
                     data["status"] = "borrow"
-                
+
                 if data["status"] == "borrow":
                     data["date"] = str(datetime.date.today())
-                    data["due"] = str(datetime.date.today() + datetime.timedelta(days=60))
+                    data["due"] = str(datetime.date.today() +
+                                      datetime.timedelta(days=60))
+
                 else:
                     data["date"] = str(datetime.date.today())
                     data["due"] = last_data["due"]
@@ -64,6 +67,8 @@ def scan(user:str):
         # close all windows
         cv2.destroyAllWindows()
 
+
 if __name__ == "__main__":
     # scan("Lux")
     print(datetime.date.today() + datetime.timedelta(days=60))
+    
