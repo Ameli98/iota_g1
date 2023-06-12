@@ -8,7 +8,8 @@ import iota_client
 from upload import synchronize
 
 
-def search(name: str):
+
+def search(name:str):
     # synchronize and load message_id.json
     synchronize()
 
@@ -36,6 +37,7 @@ def search(name: str):
     data = json.loads(data)
 
     return data
+
 
 
 if __name__ == "__main__":

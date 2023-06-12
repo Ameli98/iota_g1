@@ -1,3 +1,9 @@
 iota
-alice-database
+*.rs
 .DS_Store
+*.json
+*.html
+*.js
+__pycache__
+.env
+library*

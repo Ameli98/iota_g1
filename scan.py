@@ -3,10 +3,10 @@ import json
 import datetime
 import os
 from dotenv import load_dotenv
-from search import search, synchronize
 
+from search import search
 
-def scan(user: str):
+def scan(user:str):
     # Open camera and qrcode detector
     cap = cv2.VideoCapture(0)
     qrcode = cv2.QRCodeDetector()
@@ -14,7 +14,7 @@ def scan(user: str):
     # open json file
     with open("data.json", "w") as output_file:
 
-        while (True):
+        while(True):
             # fetch an frame from camera
             ret, frame = cap.read()
 
@@ -48,6 +48,7 @@ def scan(user: str):
                     data["date"] = str(datetime.date.today())
                     data["due"] = str(datetime.date.today() +
                                       datetime.timedelta(days=60))
+
                 else:
                     data["date"] = str(datetime.date.today())
                     data["due"] = last_data["due"]
@@ -70,3 +71,4 @@ def scan(user: str):
 if __name__ == "__main__":
     # scan("Lux")
     print(datetime.date.today() + datetime.timedelta(days=60))
+    

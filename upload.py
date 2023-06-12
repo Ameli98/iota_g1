@@ -23,8 +23,7 @@ def upload():
         due = datetime.strptime(data["due"], "%Y-%m-%d")
         if status == "return":
             if due < datetime.today():
-                print(
-                    f"Overdued!! you should have return {name} before {str(due)}.")
+                print(f"Overdued!! you should have return {name} before {str(due)}.")
             else:
                 print("Return successfully.")
         else:

@@ -1,7 +1,6 @@
 from scan import scan
 from upload import upload
 from pay import pay
-
 import os
 from getpass import getpass
 import argparse
@@ -14,7 +13,7 @@ def main(username):
     scan(username)
     if pay(username):
         upload()
-
+        
 
 if __name__ == "__main__":
     # option build
@@ -22,6 +21,7 @@ if __name__ == "__main__":
     parser.add_argument("user_name", type=str, help="your username")
     parser.add_argument("-bn", "--book_number", nargs="?", type=int,
                         default=1, help="number of books you want to borrow or return")
+
     args = parser.parse_args()
 
     # load right password from database

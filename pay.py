@@ -24,6 +24,7 @@ def pay(username: str):
             return True
 
     print("--------- Payment Process Start -------------")
+
     # get a specific instance of some account
     account = account_manager.get_account(username)
     print(f'Account: {account.alias()} selected')
