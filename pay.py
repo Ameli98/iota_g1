@@ -2,6 +2,7 @@ import iota_wallet as iw
 import json
 import os
 from dotenv import load_dotenv
+from search import search
 
 # Load the env variables｀
 load_dotenv()
@@ -15,6 +16,13 @@ account_manager.set_stronghold_password(STRONGHOLD_PASSWORD)
 
 
 def pay(username: str):
+    with open("data.json", "r") as f:
+        data = json.load(f)
+        price = int(data["price"])
+        last_data = search(data["name"])
+        if last_data["status"] == "borrow":
+            return True
+
     print("--------- Payment Process Start -------------")
     # get a specific instance of some account
     account = account_manager.get_account(username)
@@ -24,12 +32,8 @@ def pay(username: str):
     print('Syncing...')
     synced = account.sync().execute()
 
-    # get total balance for the account
+    # get total balance for the account & show rental fee
     print(f"Account balance: {account.balance()['available']/1000000} dollar")
-
-    with open("data.json", "r") as f:
-        data = json.load(f)
-        price = int(data["price"])
     print(f"The rental fee of this book is {price} dollar.")
 
     if account.balance()['available'] < price*1000000:

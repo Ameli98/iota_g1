@@ -26,7 +26,7 @@ def upload():
                 print(
                     f"Overdued!! you should have return {name} before {str(due)}.")
             else:
-                print("Operation success.")
+                print("Return successfully.")
         else:
             print(f"Operation success. Please return {name} before {str(due)}")
 

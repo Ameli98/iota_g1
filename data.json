@@ -1,1 +1,1 @@
-{"name": "Bible", "price": "1", "user": "A", "date": "2023-06-09", "due": "2023-08-08", "place": "Just_a_Lib", "status": "return"}
+{"name": "Book1", "price": "1", "user": "E", "place": "Another Library", "status": "borrow", "date": "2023-06-12", "due": "2023-08-11"}

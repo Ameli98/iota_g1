@@ -1,12 +1,14 @@
 import json
 import argparse
 from dotenv import load_dotenv
-import subprocess, os, sys
+import subprocess
+import os
+import sys
 import iota_client
 from upload import synchronize
 
 
-def search(name:str):
+def search(name: str):
     # synchronize and load message_id.json
     synchronize()
 
@@ -34,6 +36,7 @@ def search(name:str):
     data = json.loads(data)
 
     return data
+
 
 if __name__ == "__main__":
     # Load argument

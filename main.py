@@ -12,8 +12,8 @@ import json
 
 def main(username):
     scan(username)
-    upload()
-    pay(username)
+    if pay(username):
+        upload()
 
 
 if __name__ == "__main__":
