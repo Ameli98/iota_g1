@@ -20,7 +20,10 @@ def pay(username: str):
         data = json.load(f)
         price = int(data["price"])
         last_data = search(data["name"])
-        if last_data["status"] == "borrow":
+        try:
+            if last_data["status"] == "borrow":
+                return True
+        except TypeError:
             return True
 
     print("--------- Payment Process Start -------------")
