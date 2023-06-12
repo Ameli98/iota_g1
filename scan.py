@@ -41,8 +41,8 @@ def scan(user:str):
                     else:
                         data["status"] = "borrow"
                 except TypeError:
-                    print("error")
-                    data["status"] = "borrow"
+                    print("Book registered.")
+                    data["status"] = "return"
 
                 if data["status"] == "borrow":
                     data["date"] = str(datetime.date.today())
