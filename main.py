@@ -4,11 +4,14 @@ from upload import upload
 import os
 from getpass import getpass
 import argparse, json
+from pay import pay
 
 # the borrow/lend process
 def main(username):
     scan(username)
     upload()
+    pay(username)
+    
 
 if __name__ == "__main__":
     # option build

@@ -1,8 +1,9 @@
 iota
-iota.rs
+*.rs
 .DS_Store
 *.json
 *.html
 *.js
 __pycache__
 .env
+library*

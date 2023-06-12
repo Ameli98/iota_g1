@@ -3,7 +3,7 @@ import json
 import datetime
 import os
 from dotenv import load_dotenv
-from search import search, synchronize
+from search import search
 
 def scan(user:str):
     # Open camera and qrcode detector
