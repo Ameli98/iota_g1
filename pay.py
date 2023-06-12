@@ -69,7 +69,7 @@ def pay(username: str):
             node_response = account.transfer(transfer)
             # pprint(node_response)
             print(
-                f"Finish payment! Account balance: {account.balance()['available']}")
+                f"Finish payment! Account balance: {account.balance()['available']/1000000} dollar")
             print("--------- Payment Process End --------------")
 
             return True

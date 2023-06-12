@@ -8,8 +8,7 @@ import iota_client
 from upload import synchronize
 
 
-
-def search(name:str):
+def search(name: str):
     # synchronize and load message_id.json
     synchronize()
 
@@ -39,7 +38,6 @@ def search(name:str):
     return data
 
 
-
 if __name__ == "__main__":
     # Load argument
     parser = argparse.ArgumentParser()
@@ -49,7 +47,7 @@ if __name__ == "__main__":
     # synchronize and load message_id.json
     load_dotenv()
     destination = os.getenv("DESTINATION")
-    subprocess.run(["scp", destination, "message_id.json"])
+    subprocess.run(["scp", "-q", destination, "message_id.json"])
 
     # Load json
     with open("message_id.json", "r") as m:
