@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 def synchronize():
     load_dotenv()
     destination = os.getenv("DESTINATION")
-    subprocess.run(["scp", destination, "message_id.json"])
+    subprocess.run(["scp", "-q", destination, "message_id.json"])
     return destination
 
 
@@ -49,7 +49,7 @@ def upload():
         json.dump(id_set, m)
 
     # Update the latest message_id.json to the database
-    subprocess.run(["scp", "message_id.json", destination])
+    subprocess.run(["scp", "-q", "message_id.json", destination])
 
 
 if __name__ == "__main__":
