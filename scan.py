@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from search import search
 
 
-def scan(user: str):
+def scan(user: str, overdue=False):
     # Open camera and qrcode detector
     cap = cv2.VideoCapture(0)
     qrcode = cv2.QRCodeDetector()
@@ -26,6 +26,7 @@ def scan(user: str):
             data, bbox, rectified = qrcode.detectAndDecode(frame)
             # write the qrcode message into data.json
             if data != "":
+                # write data.json
                 data = data.replace("\'", "\"")
                 data = json.loads(data)
 
@@ -44,7 +45,11 @@ def scan(user: str):
                     else:
                         data["status"] = "borrow"
                         data["date"] = str(datetime.date.today())
-                        data["due"] = str(datetime.date.today() +
+                        if overdue:
+                            data["due"] = str(datetime.date.today() +
+                                        datetime.timedelta(days=-60))
+                        else:
+                            data["due"] = str(datetime.date.today() +
                                         datetime.timedelta(days=60))
                 except TypeError:
                     print("Book registered.")
@@ -58,8 +63,8 @@ def scan(user: str):
                 break
 
             # press 'q' to exit
-            # if cv2.waitKey(1) & 0xFF == ord('q'):
-            #     break
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
 
         # release the camera
         cap.release()

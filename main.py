@@ -9,8 +9,8 @@ import json
 # the borrow/lend process
 
 
-def main(username):
-    scan(username)
+def main(username, overdue=False):
+    scan(username,overdue)
     if pay(username):
         upload()
         
@@ -21,6 +21,7 @@ if __name__ == "__main__":
     parser.add_argument("user_name", type=str, help="your username")
     parser.add_argument("-bn", "--book_number", nargs="?", type=int,
                         default=1, help="number of books you want to borrow or return")
+    parser.add_argument("-od", "--overdue_demo", action="store_true", help="Demo of overdueing")
 
     args = parser.parse_args()
 
@@ -42,7 +43,7 @@ if __name__ == "__main__":
         if password == account_set[username]:
             print("User recognized, logging...")
             for i in range(args.book_number):
-                main(username)
+                main(username, args.overdue_demo)
             break
         elif attempt >= 3:
             print("Too many attempts, session terminated.")
